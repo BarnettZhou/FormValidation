@@ -1,0 +1,14 @@
+{
+    "name": "xuchen/form-validation",
+    "description": "form validation",
+    "type": "php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zhouxuchen",
+            "email": "zhouxuchen1993@foxmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
