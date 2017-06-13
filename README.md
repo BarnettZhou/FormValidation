@@ -31,8 +31,6 @@ composer update
 ``` php
 <?php
 
-<?php
-
 namespace App;
 
 
