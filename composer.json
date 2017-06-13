@@ -9,6 +9,14 @@
             "email": "zhouxuchen1993@foxmail.com"
         }
     ],
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xuchen\\FormValidation\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
     "require": {}
 }
