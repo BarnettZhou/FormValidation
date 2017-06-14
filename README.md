@@ -18,7 +18,7 @@
 项目目录中运行如下命令
 
 ```
-composer require xuchen/form-validation
+composer require xuchen/form-validation:dev-master
 ```
 
 或在项目目录composer.json的require中加入
