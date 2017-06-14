@@ -2,7 +2,7 @@
 
 为Lumen准备的一个表单验证插件
 
-## 安装
+## Installation
 
 项目目录中运行如下命令
 
@@ -24,7 +24,7 @@ composer require xuchen/form-validation
 composer update
 ```
 
-## 简单使用
+## Usage
 
 在Lumen项目的`app`目录下新建`MyValidation.php`文件（你也可以放在Validations目录中，注意命名空间的对应）
 
@@ -106,3 +106,11 @@ class MyController extends Controller
     }
 }
 ```
+
+## Author
+
+Xuchen Zhou, [zhouxuchen1993@foxmail.com](mailto:zhouxuchen1993@foxmail.com)
+
+## License
+
+xuchen/form-validation is available under the Apache license.
