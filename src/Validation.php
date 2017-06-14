@@ -30,4 +30,14 @@ class Validation extends CommonValidation
             return true;
         }
     }
+
+    protected function fieldMax($field, $length)
+    {
+        $param = $this->getFormParam($field, '');
+        if (strlen($param) > $length) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
