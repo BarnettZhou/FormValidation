@@ -107,6 +107,8 @@ class MyController extends Controller
 }
 ```
 
+更多文档见[wiki页面](https://github.com/BarnettZhou/FormValidation/wiki)。
+
 ## Author
 
 Xuchen Zhou, [zhouxuchen1993@foxmail.com](mailto:zhouxuchen1993@foxmail.com)
