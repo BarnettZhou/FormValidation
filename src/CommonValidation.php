@@ -2,7 +2,7 @@
 
 namespace Xuchen\FormValidation;
 
-abstract class CommonValidation
+class CommonValidation
 {
     /**
      * @var int $_error_code    错误码
@@ -134,14 +134,17 @@ abstract class CommonValidation
                 // 若返回为数组则根据数组内规则检查字段
             } else if (is_array($ret)) {
                 foreach ($ret as $validate_rule => $rule_error_msg) {
-                    $method_name = 'field' . ucfirst($validate_rule);
+                    // 分割rule字符串
+                    $rule_array = explode('|', $validate_rule);
+                    $method_name = 'field' . ucfirst($rule_array[0]);
+                    $param_list = count($rule_array) > 1? array_splice($rule_array, 1) : [];
                     // 验证方法是否存在
                     if (!method_exists($this, $method_name)) {
                         echo 'method ' . $method_name . ' not exists';die;
                         continue;
                     }
                     // 验证字段
-                    if ($this->$method_name($_func_name) === false) {
+                    if ($this->$method_name($_func_name, ...$param_list) === false) {
                         $this->_error_msg = $rule_error_msg;
                         return false;
                     }
