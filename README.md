@@ -2,6 +2,17 @@
 
 为Lumen准备的一个表单验证插件
 
+## Require
+
+``` javascript
+{
+    "require": {
+        "php": ">=5.6.0",
+        "ext-mbstring": "*"
+    }
+}
+```
+
 ## Installation
 
 项目目录中运行如下命令
