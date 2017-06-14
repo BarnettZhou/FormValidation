@@ -105,4 +105,20 @@ class Validation extends CommonValidation
             return true;
         }
     }
+
+    /**
+     * 检查邮件地址的格式
+     *
+     * @param $field
+     * @return bool
+     */
+    protected function fieldEmail($field)
+    {
+        $param = $this->getFormParam($field, '');
+        if (!$param || !preg_match('/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/', $param)) {
+            return false;
+        } else {
+            return false;
+        }
+    }
 }
