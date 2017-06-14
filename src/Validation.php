@@ -31,10 +31,75 @@ class Validation extends CommonValidation
         }
     }
 
+    /**
+     * 检查字符串长度是否超过最大值
+     * 使用strlen()获取字符串长度
+     *
+     * @param $field
+     * @param int $length 长度，默认为0不检查
+     * @return bool
+     */
     protected function fieldMax($field, $length)
     {
         $param = $this->getFormParam($field, '');
         if (strlen($param) > $length) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * 检查字符串长度是否小于最小值
+     * 使用strlen()获取字符串长度
+     *
+     * @param $field
+     * @param int $length 长度，默认为0不检查
+     * @return bool
+     */
+    protected function fieldMin($field, $length = 0)
+    {
+        if ($length == 0) return true;
+        $param = $this->getFormParam($field, '');
+        if (strlen($param) < $length) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * 检查字符串长度是否超过最大值
+     * 使用strlen()获取字符串长度
+     *
+     * @param $field
+     * @param int $length 长度，默认为0不检查
+     * @return bool
+     */
+    protected function fieldMaxzh($field, $length = 0)
+    {
+        if ($length == 0) return true;
+        $param = $this->getFormParam($field, '');
+        if (mb_strlen($param) > $length) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * 检查字符串长度是否小于最小值
+     * 使用mb_strlen()获取字符串长度
+     *
+     * @param $field
+     * @param int $length 长度，默认为0不检查
+     * @return bool
+     */
+    protected function fieldMinzh($field, $length = 0)
+    {
+        if ($length == 0) return true;
+        $param = $this->getFormParam($field, '');
+        if (mb_strlen($param) < $length) {
             return false;
         } else {
             return true;
