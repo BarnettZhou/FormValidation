@@ -137,4 +137,20 @@ class Validation extends CommonValidation
             return true;
         }
     }
+
+    /**
+     * 检查银行账号格式
+     *
+     * @param $field
+     * @return bool
+     */
+    protected function fieldAccount($field)
+    {
+        $param = $this->getFormParam($field, '');
+        if (!$param || !preg_match('/^[\d]{16,19}$/', $params)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
