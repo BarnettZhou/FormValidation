@@ -58,7 +58,7 @@ class CommonValidation
      * @param string $key  错误KEY
      * @return $this
      */
-    final public function setErrorInfo($code, $msg, $key)
+    final public function setErrorInfo($code = 0, $msg = '', $key = '')
     {
         $this->_error_code  = $code;
         $this->_error_msg   = $msg;
