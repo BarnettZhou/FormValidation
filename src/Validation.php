@@ -121,4 +121,20 @@ class Validation extends CommonValidation
             return false;
         }
     }
+
+    /**
+     * 检查QQ号格式
+     *
+     * @param $field
+     * @return bool
+     */
+    protected function fieldQq($field)
+    {
+        $param = $this->getFormParam($field, '');
+        if (!$param || !preg_match('/^\w{5,}$/', $param)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
