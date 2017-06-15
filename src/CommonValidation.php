@@ -44,7 +44,7 @@ class CommonValidation
      * @param array $params 表单数据，使用Request::all()方法获取即可
      * @return $this
      */
-    public function setFormParams($params)
+    final public function setFormParams($params)
     {
         $this->_form_params = $params;
         return $this;
@@ -58,7 +58,7 @@ class CommonValidation
      * @param string $key  错误KEY
      * @return $this
      */
-    public function setErrorInfo($code, $msg, $key)
+    final public function setErrorInfo($code, $msg, $key)
     {
         $this->_error_code  = $code;
         $this->_error_msg   = $msg;
@@ -69,7 +69,7 @@ class CommonValidation
     /**
      * @return array 所有错误信息
      */
-    public function getErrorInfo()
+    final public function getErrorInfo()
     {
         return [
             'code'  => $this->_error_code,
@@ -81,7 +81,7 @@ class CommonValidation
     /**
      * @return int 返回错误码
      */
-    public function getErrorCode()
+    final public function getErrorCode()
     {
         return $this->_error_code;
     }
@@ -89,7 +89,7 @@ class CommonValidation
     /**
      * @return string 返回错误信息
      */
-    public function getErrorMsg()
+    final public function getErrorMsg()
     {
         return $this->_error_msg;
     }
@@ -97,7 +97,7 @@ class CommonValidation
     /**
      * @return string 返回错误KEY
      */
-    public function getErrorKey()
+    final public function getErrorKey()
     {
         return $this->_error_key;
     }
@@ -115,7 +115,7 @@ class CommonValidation
      * @param int $mode
      * @return bool
      */
-    public function validateFields($fields = [], $mode = self::MODE_ONLY)
+    final public function validateFields($fields = [], $mode = self::MODE_ONLY)
     {
         $_all_fields = array_keys($this->fieldsValidationRules());
         if ($mode == 1 && $fields) {    // 获取$_all_fields与$fields的交集
@@ -163,7 +163,7 @@ class CommonValidation
      * @param string $trans 转换方法，例如intval
      * @return mixed|string 表单参数
      */
-    public function getFormParam($key = 0, $default = '', $trans = '')
+    final public function getFormParam($key = 0, $default = '', $trans = '')
     {
         $value = isset($this->_form_params[$key])? $this->_form_params[$key] : $default;
         if ($trans && function_exists($trans)) {
