@@ -136,8 +136,14 @@ class CommonValidation
                 foreach ($ret as $validate_rule => $rule_error_msg) {
                     // 分割rule字符串
                     $rule_array = explode('|', $validate_rule);
-                    $method_name = 'field' . ucfirst($rule_array[0]);
+
+                    // 方法名
+                    $method_name = '';
+                    $method_name_array = explode('-', $rule_array[0]);
+                    array_map(function($item) use (&$method_name) { $method_name .= ucfirst($item); }, $method_name_array);
                     $param_list = count($rule_array) > 1? array_splice($rule_array, 1) : [];
+
+
                     // 验证方法是否存在
                     if (!method_exists($this, $method_name)) {
                         echo 'method ' . $method_name . ' not exists';die;
