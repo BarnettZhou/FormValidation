@@ -146,11 +146,13 @@ class CommonValidation
 
                     // 验证方法是否存在
                     if (!method_exists($this, $method_name)) {
-                        echo 'method ' . $method_name . ' not exists';die;
-                        continue;
+                        $this->_error_code = 500;   // I fucked up.
+                        $this->_error_msg = 'Validate-method ' . $method_name . ' doesn\'t exists.';
+                        return false;
                     }
                     // 验证字段
                     if ($this->$method_name($_func_name, ...$param_list) === false) {
+                        $this->_error_code = 400;   // You fucked up.
                         $this->_error_msg = $rule_error_msg;
                         return false;
                     }
