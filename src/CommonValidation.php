@@ -179,4 +179,23 @@ class CommonValidation
         }
         return $value;
     }
+
+    /**
+     * @return array 整理过后的表单
+     */
+    final public function getParsedFormParam()
+    {
+        return $this->_form_params;
+    }
+
+    /**
+     * @param int $key 字段名
+     * @param string|mixed $value 设置的值
+     * @return $this
+     */
+    final protected function setFormParam($key = 0, $value = '')
+    {
+        $this->_form_params[$key] = $value;
+        return $this;
+    }
 }
