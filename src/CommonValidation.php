@@ -189,9 +189,21 @@ abstract class CommonValidation
     /**
      * @return array 整理过后的表单
      */
-    final public function getParsedFormParam()
+    final public function getParsedFormParams()
     {
         return $this->_form_params;
+    }
+
+    /**
+     * @return mixed
+     */
+    final public function getParsedFormParam($field)
+    {
+        if (isset($this->_form_params[$field])) {
+            return $this->_form_params[$field];
+        } else {
+            return null;
+        }
     }
 
     /**
