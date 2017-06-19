@@ -144,7 +144,7 @@ class Validation extends CommonValidation
      * @param $field
      * @return bool
      */
-    protected function fieldAccount($field)
+    protected function fieldBankAccount($field)
     {
         $param = $this->getFormParam($field, '');
         if (!$param || !preg_match('/^[\d]{16,19}$/', $param)) {
