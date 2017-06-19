@@ -138,7 +138,7 @@ class CommonValidation
                     $rule_array = explode('|', $validate_rule);
 
                     // 方法名
-                    $method_name = '';
+                    $method_name = 'field';
                     $method_name_array = explode('-', $rule_array[0]);
                     array_map(function($item) use (&$method_name) { $method_name .= ucfirst($item); }, $method_name_array);
                     $param_list = count($rule_array) > 1? array_splice($rule_array, 1) : [];
