@@ -2,7 +2,7 @@
 
 namespace Xuchen\FormValidation;
 
-class CommonValidation
+abstract class CommonValidation
 {
     /**
      * @var int $_error_code    错误码
@@ -137,12 +137,18 @@ class CommonValidation
                     // 分割rule字符串
                     $rule_array = explode('|', $validate_rule);
 
+                    // 检查是否为default，是则为该字段赋一个默认值
+                    if ($validate_rule == 'default') {
+                        $trans_func = count($rule_array) > 1? $rule_array[1] : '';
+                        $this->fieldDefault($_func_name, $rule_error_msg, $trans_func);
+                        continue;
+                    }
+
                     // 方法名
                     $method_name = 'field';
                     $method_name_array = explode('-', $rule_array[0]);
                     array_map(function($item) use (&$method_name) { $method_name .= ucfirst($item); }, $method_name_array);
                     $param_list = count($rule_array) > 1? array_splice($rule_array, 1) : [];
-
 
                     // 验证方法是否存在
                     if (!method_exists($this, $method_name)) {
@@ -197,5 +203,19 @@ class CommonValidation
     {
         $this->_form_params[$key] = $value;
         return $this;
+    }
+
+    /**
+     * 为参数设置默认值
+     *
+     * @param string $field
+     * @param string|mixed $default
+     * @param string $trans 转换函数
+     * @return $this
+     */
+    final protected function fieldDefault($field, $default = '', $trans = '')
+    {
+        $param = $this->getFormParam($field, $default, $trans);
+        return $this->setFormParam($field, $default);
     }
 }
