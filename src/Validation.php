@@ -6,6 +6,20 @@ namespace Xuchen\FormValidation;
 class Validation extends CommonValidation
 {
     /**
+     * 实例化子类
+     * @param string $className
+     * @return CommonService
+     */
+    public static function init($className = __CLASS__)
+    {
+        // 当实例化的类为当前类（Validation）时获取子类的类名
+        if (__CLASS__ == 'Xuchen\FormValidation\Validation') {
+            $className = get_called_class();
+        }
+        return parent::init($className);
+    }
+
+    /**
      * 检查参数是否存在且不为空
      *
      * @param string $field
