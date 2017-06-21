@@ -21,7 +21,7 @@ abstract class CommonValidation
     /**
      * @var array 整理过后的表单数据
      */
-    protected $_parsed_params = [];
+    protected $_parsed_form_params = [];
 
     const MODE_ALL          = 0;    // 字段检查为ALL模式，检查Service定义的所有参数
     const MODE_ONLY         = 1;    // 字段检查为ONLY模式，检查传入$fields参数内所有字段
@@ -204,8 +204,8 @@ abstract class CommonValidation
      */
     final public function getParsedFormParam($field)
     {
-        if (isset($this->_parsed_params[$field])) {
-            return $this->_parsed_params[$field];
+        if (isset($this->_parsed_form_params[$field])) {
+            return $this->_parsed_form_params[$field];
         } else {
             return null;
         }
@@ -218,10 +218,10 @@ abstract class CommonValidation
      */
     final protected function setFormParam($key = 0, $value = '')
     {
-        if (!$this->_parsed_params) {
-            $this->_parsed_params = $this->_form_params;
+        if (!$this->_parsed_form_params) {
+            $this->_parsed_form_params = $this->_form_params;
         }
-        $this->_parsed_params[$key] = $value;
+        $this->_parsed_form_params[$key] = $value;
         return $this;
     }
 
