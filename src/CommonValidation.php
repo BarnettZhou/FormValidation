@@ -18,6 +18,11 @@ abstract class CommonValidation
      */
     protected $_form_params = [];
 
+    /**
+     * @var array 整理过后的表单数据
+     */
+    protected $_parsed_params = [];
+
     const MODE_ALL          = 0;    // 字段检查为ALL模式，检查Service定义的所有参数
     const MODE_ONLY         = 1;    // 字段检查为ONLY模式，检查传入$fields参数内所有字段
     const MODE_EXCEPT       = 2;    // 字段检查为EXCEPT模式，检查除了传入的$fields参数内的所有字段
@@ -191,7 +196,7 @@ abstract class CommonValidation
      */
     final public function getParsedFormParams()
     {
-        return $this->_form_params;
+        return $this->_parsed_form_params;
     }
 
     /**
@@ -212,6 +217,18 @@ abstract class CommonValidation
      * @return $this
      */
     final protected function setFormParam($key = 0, $value = '')
+    {
+        if (!$this->_parsed_params) {
+            $this->_parsed_params = $this->_form_params;
+        }
+        $this->_parsed_form_params[$key] = $value;
+        return $this;
+    }
+
+    /**
+     * 强制修改原表单数据中的值
+     */
+    final protected function setFormParamsForce($key = 0, $value = '')
     {
         $this->_form_params[$key] = $value;
         return $this;
