@@ -196,7 +196,11 @@ abstract class CommonValidation
      */
     final public function getParsedFormParams()
     {
-        return $this->_parsed_form_params;
+        if (!$this->_parsed_form_params) {
+            return $this->_form_params;
+        } else {
+            return $this->_parsed_form_params;
+        }
     }
 
     /**
