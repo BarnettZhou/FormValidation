@@ -204,8 +204,8 @@ abstract class CommonValidation
      */
     final public function getParsedFormParam($field)
     {
-        if (isset($this->_form_params[$field])) {
-            return $this->_form_params[$field];
+        if (isset($this->_parsed_params[$field])) {
+            return $this->_parsed_params[$field];
         } else {
             return null;
         }
