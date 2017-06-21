@@ -221,7 +221,7 @@ abstract class CommonValidation
         if (!$this->_parsed_params) {
             $this->_parsed_params = $this->_form_params;
         }
-        $this->_parsed_form_params[$key] = $value;
+        $this->_parsed_params[$key] = $value;
         return $this;
     }
 
