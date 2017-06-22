@@ -164,7 +164,9 @@ abstract class CommonValidation
                     // 验证字段
                     if ($this->$method_name($_func_name, ...$param_list) === false) {
                         $this->_error_code = 400;   // You fucked up.
-                        $this->_error_msg = $rule_error_msg;
+                        if (!$this->_error_msg) {
+                            $this->_error_msg = $rule_error_msg;
+                        }
                         return false;
                     }
                 }
