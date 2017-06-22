@@ -232,7 +232,7 @@ abstract class CommonValidation
     /**
      * 强制修改原表单数据中的值
      */
-    final protected function setFormParamsForce($key = 0, $value = '')
+    final protected function setFormParamForce($key = 0, $value = '')
     {
         $this->_form_params[$key] = $value;
         return $this;
