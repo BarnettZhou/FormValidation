@@ -35,6 +35,22 @@ class Validation extends CommonValidation
         }
     }
 
+    /**
+     * 检查参数是否不为零
+     *
+     * @param string $field
+     * @return bool
+     */
+    protected function fieldNotZero($field)
+    {
+        $param = $this->getFormParam($field, 0, 'intval');
+        if (!$param) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     protected function fieldMobile($field)
     {
         $param = $this->getFormParam($field, '');
