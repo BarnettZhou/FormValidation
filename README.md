@@ -47,24 +47,8 @@ namespace App;
 
 use Xuchen\FormValidation\Validation;
 
-class CopartnerValidation extends Validation
+class MyValidation extends Validation
 {
-    /**
-     * 通过ClassName::init()的方式调用一个类的实例化
-     * 若使用依赖注入的方式调用则无须定义该方法
-     *
-     * @param string $className 当前类名
-     */
-    public static function init($className = __CLASS__)
-    {
-        return parent::init($className);
-    }
-
-    public function test()
-    {
-        echo 'my validation works';die;
-    }
-
     /**
      * 字段验证规则
      */
@@ -78,6 +62,11 @@ class CopartnerValidation extends Validation
                 return [
                     'required'  => '手机号必填',
                     'mobile'    => '手机号格式不正确',
+                ];
+            },
+            'content' => function() {
+                return [
+                    'maxzh:255' => '内容不能超过255个字符',
                 ];
             },
             'type' => function() {
