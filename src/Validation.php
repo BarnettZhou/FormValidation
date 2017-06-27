@@ -20,16 +20,24 @@ class Validation extends CommonValidation
     }
 
     /**
-     * 检查参数是否存在且不为空
+     * 检查参数是否存在
      *
      * @param string $field
+     * @param bool|string $nullable 是否允许参数为空
      * @return bool
      */
-    protected function fieldRequired($field)
+    protected function fieldRequired($field, $nullable = false)
     {
-        $param = $this->getFormParam($field, '');
-        if (!$param) {
+        if (!isset($this->_form_params[$field])) {
             return false;
+        }
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            if ($nullable === 'true') {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return true;
         }
@@ -49,6 +57,19 @@ class Validation extends CommonValidation
         } else {
             return true;
         }
+    }
+
+    /**
+     * 检查参数是否不为空
+     * 参数使用empty()函数返回真则返回错误
+     *
+     * @param string $field
+     * @return bool
+     */
+    protected function fieldNotEmpty($field)
+    {
+        $param = $this->getFormParam($field, '');
+        return !empty($param);
     }
 
     protected function fieldMobile($field)

@@ -116,12 +116,31 @@ abstract class CommonValidation
     }
 
     /**
+     * 在进行参数检查前的检查
+     * @return bool
+     */
+    final protected function beforeValidateFields()
+    {
+        // 检查表单数据是否已被设置
+        if (!$this->_form_params) {
+            $this->setErrorInfo(500, 'Please set form data first.', '');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * @param array $fields
      * @param int $mode
      * @return bool
      */
     final public function validateFields($fields = [], $mode = self::MODE_ONLY)
     {
+        if (!$this->beforeValidateFields()) {
+            return false;
+        }
+
         $_all_fields = array_keys($this->fieldsValidationRules());
         if ($mode == 1 && $fields) {    // 获取$_all_fields与$fields的交集
             $fields = array_intersect($_all_fields, $fields);
