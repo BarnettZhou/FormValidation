@@ -140,7 +140,7 @@ abstract class CommonValidation
             } else if (is_array($ret)) {
                 foreach ($ret as $validate_rule => $rule_error_msg) {
                     // 分割rule字符串
-                    $rule_array = explode('|', $validate_rule);
+                    $rule_array = explode(':', $validate_rule);
 
                     // 检查是否为default，是则为该字段赋一个默认值
                     if ($validate_rule == 'default') {
@@ -153,7 +153,7 @@ abstract class CommonValidation
                     $method_name = 'field';
                     $method_name_array = explode('-', $rule_array[0]);
                     array_map(function($item) use (&$method_name) { $method_name .= ucfirst($item); }, $method_name_array);
-                    $param_list = count($rule_array) > 1? array_splice($rule_array, 1) : [];
+                    $param_list = count($rule_array) > 1? explode(',', $rule_array[1]) : [];
 
                     // 验证方法是否存在
                     if (!method_exists($this, $method_name)) {
