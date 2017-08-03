@@ -7,6 +7,7 @@ class Validation extends CommonValidation
 {
     /**
      * 实例化子类
+     * 似乎IDE对这个方法的支持并不好，因此不推荐使用
      * @param string $className
      * @return CommonService
      */

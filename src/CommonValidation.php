@@ -14,6 +14,11 @@ abstract class CommonValidation
     protected $_error_key   = '';
 
     /**
+     * 表单是否可为空
+     */
+    protected $form_nullable = true;
+
+    /**
      * @var array 请求的所有表单数据
      */
     protected $_form_params = [];
@@ -122,7 +127,7 @@ abstract class CommonValidation
     final protected function beforeValidateFields()
     {
         // 检查表单数据是否已被设置
-        if (!$this->_form_params) {
+        if (!$this->form_nullable && !$this->_form_params) {
             $this->setErrorInfo(500, 'Please set form data first.', '');
             return false;
         } else {
@@ -213,27 +218,31 @@ abstract class CommonValidation
     }
 
     /**
+     * 获取表单
+     * @return array
+     */
+    public function getFormParams()
+    {
+        return $this->_form_params;
+    }
+
+    /**
      * @return array 整理过后的表单
+     * FIXME
      */
     final public function getParsedFormParams()
     {
-        if (!$this->_parsed_form_params) {
-            return $this->_form_params;
-        } else {
-            return $this->_parsed_form_params;
-        }
+        return $this->_form_params;
     }
 
     /**
      * @return mixed
+     * 兼容性考虑，该方法不删除
+     * FIXME
      */
     final public function getParsedFormParam($field)
     {
-        if (isset($this->_parsed_form_params[$field])) {
-            return $this->_parsed_form_params[$field];
-        } else {
-            return null;
-        }
+        return $this->getFormParam($field, null);
     }
 
     /**
@@ -243,15 +252,13 @@ abstract class CommonValidation
      */
     final protected function setFormParam($key = 0, $value = '')
     {
-        if (!$this->_parsed_form_params) {
-            $this->_parsed_form_params = $this->_form_params;
-        }
-        $this->_parsed_form_params[$key] = $value;
+        $this->_form_params[$key] = $value;
         return $this;
     }
 
     /**
      * 强制修改原表单数据中的值
+     * 兼容性考虑，该方法不删除
      */
     final protected function setFormParamForce($key = 0, $value = '')
     {
