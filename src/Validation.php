@@ -9,7 +9,7 @@ class Validation extends CommonValidation
      * 实例化子类
      * 似乎IDE对这个方法的支持并不好，因此不推荐使用
      * @param string $className
-     * @return CommonService
+     * @return CommonValidation
      */
     public static function init($className = __CLASS__)
     {
@@ -24,7 +24,7 @@ class Validation extends CommonValidation
      * 检查参数是否存在
      *
      * @param string $field
-     * @param bool|string $nullable 是否允许参数为空
+     * @param bool $nullable 是否允许参数为null
      * @return bool
      */
     protected function fieldRequired($field, $nullable = false)
@@ -122,7 +122,7 @@ class Validation extends CommonValidation
 
     /**
      * 检查字符串长度是否超过最大值
-     * 使用strlen()获取字符串长度
+     * 使用mb_strlen()获取字符串长度
      *
      * @param $field
      * @param int $length 长度，默认为0不检查

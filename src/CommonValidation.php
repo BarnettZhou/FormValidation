@@ -236,7 +236,8 @@ abstract class CommonValidation
     }
 
     /**
-     * @return mixed
+     * @param $field
+     * @return mixed 兼容性考虑，该方法不删除
      * 兼容性考虑，该方法不删除
      * FIXME
      */
@@ -259,6 +260,9 @@ abstract class CommonValidation
     /**
      * 强制修改原表单数据中的值
      * 兼容性考虑，该方法不删除
+     * @param int $key
+     * @param string $value
+     * @return $this
      */
     final protected function setFormParamForce($key = 0, $value = '')
     {
