@@ -227,26 +227,6 @@ abstract class CommonValidation
     }
 
     /**
-     * @return array 整理过后的表单
-     * FIXME
-     */
-    final public function getParsedFormParams()
-    {
-        return $this->_form_params;
-    }
-
-    /**
-     * @param $field
-     * @return mixed 兼容性考虑，该方法不删除
-     * 兼容性考虑，该方法不删除
-     * FIXME
-     */
-    final public function getParsedFormParam($field)
-    {
-        return $this->getFormParam($field, null);
-    }
-
-    /**
      * @param int $key 字段名
      * @param string|mixed $value 设置的值
      * @return $this
