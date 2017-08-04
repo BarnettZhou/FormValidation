@@ -238,19 +238,6 @@ abstract class CommonValidation
     }
 
     /**
-     * 强制修改原表单数据中的值
-     * 兼容性考虑，该方法不删除
-     * @param int $key
-     * @param string $value
-     * @return $this
-     */
-    final protected function setFormParamForce($key = 0, $value = '')
-    {
-        $this->_form_params[$key] = $value;
-        return $this;
-    }
-
-    /**
      * 为参数设置默认值
      *
      * @param string $field
@@ -261,6 +248,6 @@ abstract class CommonValidation
     final protected function fieldDefault($field, $default = '', $trans = '')
     {
         $param = $this->getFormParam($field, $default, $trans);
-        return $this->setFormParam($field, $default);
+        return $this->setFormParam($field, $param);
     }
 }
