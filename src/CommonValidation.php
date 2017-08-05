@@ -32,24 +32,6 @@ abstract class CommonValidation
     const MODE_ONLY         = 1;    // 字段检查为ONLY模式，检查传入$fields参数内所有字段
     const MODE_EXCEPT       = 2;    // 字段检查为EXCEPT模式，检查除了传入的$fields参数内的所有字段
 
-    private static $_instances = [];
-
-    /**
-     * 实例化一个子类
-     *
-     * @param string $className 子类类名
-     * @return CommonService $instance
-     */
-    public static function init($className = __CLASS__)
-    {
-        if (isset(self::$_instances[$className])) {
-            return self::$_instances[$className];
-        } else {
-            $instance = self::$_instances[$className] = new $className();
-            return $instance;
-        }
-    }
-
     /**
      * @param array $params 表单数据，使用Request::all()方法获取即可
      * @return $this
