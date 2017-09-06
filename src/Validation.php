@@ -215,4 +215,24 @@ class Validation extends CommonValidation
         }
         return true;
     }
+
+    /**
+     * 检查值是否在某个数组内
+     *
+     * @param $field
+     * @param array ...$values
+     * @return bool
+     */
+    protected function fieldInArray($field, ...$values)
+    {
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return false;
+        }
+
+        if (!in_array($param, $values)) {
+            return false;
+        }
+        return true;
+    }
 }
