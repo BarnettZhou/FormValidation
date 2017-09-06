@@ -5,19 +5,9 @@ namespace Xuchen\FormValidation;
 
 class Validation extends CommonValidation
 {
-    /**
-     * 实例化子类
-     * 似乎IDE对这个方法的支持并不好，因此不推荐使用
-     * @param string $className
-     * @return CommonValidation
-     */
-    public static function init($className = __CLASS__)
+    public function __construct()
     {
-        // 当实例化的类为当前类（Validation）时获取子类的类名
-        if (__CLASS__ == 'Xuchen\FormValidation\Validation') {
-            $className = get_called_class();
-        }
-        return parent::init($className);
+
     }
 
     /**
@@ -204,5 +194,25 @@ class Validation extends CommonValidation
         } else {
             return true;
         }
+    }
+
+    /**
+     * 检查范围
+     *
+     * @param $field
+     * @param $start
+     * @param $end
+     * @return bool
+     */
+    protected function fieldNumberRange($field, $start, $end)
+    {
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return false;
+        }
+        if ($param < $start || $param > $end) {
+            return false;
+        }
+        return true;
     }
 }

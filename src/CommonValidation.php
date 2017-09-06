@@ -6,8 +6,8 @@ abstract class CommonValidation
 {
     /**
      * @var int $_error_code    错误码
-     * @var $_error_msg         错误信息
-     * @var $error_key          错误信息KEY，用于log保存
+     * @var string $_error_msg  错误信息
+     * @var string $error_key   错误信息KEY，用于log保存
      */
     protected $_error_code  = 0;
     protected $_error_msg   = '';
