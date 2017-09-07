@@ -5,11 +5,6 @@ namespace Xuchen\FormValidation;
 
 class Validation extends CommonValidation
 {
-    public function __construct()
-    {
-
-    }
-
     /**
      * 检查参数是否存在
      *
@@ -63,6 +58,12 @@ class Validation extends CommonValidation
         return !empty($param);
     }
 
+    /**
+     * 检查参数是否符合手机号格式
+     *
+     * @param $field
+     * @return bool
+     */
     protected function fieldMobile($field)
     {
         $param = $this->getFormParam($field, '');
@@ -197,7 +198,7 @@ class Validation extends CommonValidation
     }
 
     /**
-     * 检查范围
+     * 检查数字的范围
      *
      * @param $field
      * @param $start
@@ -211,6 +212,74 @@ class Validation extends CommonValidation
             return false;
         }
         if ($param < $start || $param > $end) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 检查日期是否在范围内
+     *
+     * @param $field
+     * @param $start
+     * @param $end
+     * @return bool
+     */
+    protected function fieldDateRange($field, $start, $end)
+    {
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return false;
+        }
+
+        $param = date('Y-m-d', strtotime($param));
+        $start = date('Y-m-d', strtotime($start));
+        $end = date('Y-m-d', strtotime($end));
+        if ($param < $start || $param > $end) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 检查日期是否在设定的日期之前
+     *
+     * @param $field
+     * @param $start
+     * @return bool
+     */
+    protected function fieldDateEarlier($field, $start)
+    {
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return false;
+        }
+
+        $param = date('Y-m-d', strtotime($param));
+        $start = date('Y-m-d', strtotime($start));
+        if ($param >= $start) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 检查日期是否在设定的日期之后
+     *
+     * @param $field
+     * @param $end
+     * @return bool
+     */
+    protected function fieldDateLater($field, $end)
+    {
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return false;
+        }
+
+        $param = date('Y-m-d', strtotime($param));
+        $end = date('Y-m-d', strtotime($end));
+        if ($param <= $end) {
             return false;
         }
         return true;
