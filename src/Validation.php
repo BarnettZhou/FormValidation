@@ -235,4 +235,24 @@ class Validation extends CommonValidation
         }
         return true;
     }
+
+    /**
+     * 检查值是否不在某个数组内
+     *
+     * @param $field
+     * @param array ...$values
+     * @return bool
+     */
+    protected function fieldNotInArray($field, ...$values)
+    {
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
+        if (in_array($param, $values)) {
+            return false;
+        }
+        return true;
+    }
 }
