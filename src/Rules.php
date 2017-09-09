@@ -36,7 +36,11 @@ trait Rules
      */
     protected function fieldNotZero($field)
     {
-        $param = $this->getFormParam($field, 0, 'intval');
+        $param = $this->getFormParam($field, null, 'intval');
+        if ($param === null) {
+            return true;
+        }
+
         if (!$param) {
             return false;
         } else {
@@ -46,14 +50,19 @@ trait Rules
 
     /**
      * 检查参数是否不为空
-     * 参数使用empty()函数返回真则返回错误
+     * - 参数使用empty()函数返回真则返回错误
+     * - 注意当参数为null时返回值为true
      *
      * @param string $field
      * @return bool
      */
     protected function fieldNotEmpty($field)
     {
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         return !empty($param);
     }
 
@@ -65,7 +74,11 @@ trait Rules
      */
     protected function fieldInteger($field)
     {
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (!preg_match('/^\-{0,1}\d+$/', $param)) {
             return false;
         } else {
@@ -81,7 +94,11 @@ trait Rules
      */
     protected function fieldMobile($field)
     {
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (!$param || !preg_match('/^1[3|5|7|8]\d{9}$/', $param)) {
             return false;
         } else {
@@ -99,7 +116,11 @@ trait Rules
      */
     protected function fieldMax($field, $length)
     {
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (strlen($param) > $length) {
             return false;
         } else {
@@ -118,7 +139,11 @@ trait Rules
     protected function fieldMin($field, $length = 0)
     {
         if ($length == 0) return true;
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (strlen($param) < $length) {
             return false;
         } else {
@@ -137,7 +162,11 @@ trait Rules
     protected function fieldMaxzh($field, $length = 0)
     {
         if ($length == 0) return true;
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (mb_strlen($param) > $length) {
             return false;
         } else {
@@ -156,7 +185,11 @@ trait Rules
     protected function fieldMinzh($field, $length = 0)
     {
         if ($length == 0) return true;
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (mb_strlen($param) < $length) {
             return false;
         } else {
@@ -172,7 +205,11 @@ trait Rules
      */
     protected function fieldEmail($field)
     {
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (!$param || !preg_match('/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/', $param)) {
             return false;
         } else {
@@ -189,7 +226,11 @@ trait Rules
      */
     protected function fieldQq($field)
     {
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (!$param || !preg_match('/^\w{5,}$/', $param)) {
             return false;
         } else {
@@ -205,7 +246,11 @@ trait Rules
      */
     protected function fieldBankAccount($field)
     {
-        $param = $this->getFormParam($field, '');
+        $param = $this->getFormParam($field, null);
+        if ($param === null) {
+            return true;
+        }
+
         if (!$param || !preg_match('/^[\d]{16,19}$/', $param)) {
             return false;
         } else {
@@ -227,7 +272,12 @@ trait Rules
     protected function fieldNumberRange($field, $start, $end)
     {
         $param = $this->getFormParam($field, null);
-        if ($param === null || ($start === '' && $end === '')) {
+        if ($param === null) {
+            return true;
+        }
+
+        if ($start === '' && $end === '') {
+            $this->setErrorInfo(500, '请检查验证器的范围');
             return false;
         }
 
@@ -254,7 +304,7 @@ trait Rules
     {
         $param = $this->getFormParam($field, null);
         if ($param === null) {
-            return false;
+            return true;
         }
 
         $param = strtotime($param);
@@ -277,7 +327,7 @@ trait Rules
     {
         $param = $this->getFormParam($field, null);
         if ($param === null) {
-            return false;
+            return true;
         }
 
         $param = strtotime($param);
@@ -299,7 +349,7 @@ trait Rules
     {
         $param = $this->getFormParam($field, null);
         if ($param === null) {
-            return false;
+            return true;
         }
 
         $param = strtotime($param);
@@ -321,7 +371,7 @@ trait Rules
     {
         $param = $this->getFormParam($field, null);
         if ($param === null) {
-            return false;
+            return true;
         }
 
         $param = strtotime($param);
@@ -343,7 +393,7 @@ trait Rules
     {
         $param = $this->getFormParam($field, null);
         if ($param === null) {
-            return false;
+            return true;
         }
 
         $param = strtotime($param);
@@ -365,7 +415,7 @@ trait Rules
     {
         $param = $this->getFormParam($field, null);
         if ($param === null) {
-            return false;
+            return true;
         }
 
         if (!in_array($param, $values)) {
@@ -384,7 +434,7 @@ trait Rules
     protected function fieldNotInArray($field, ...$values)
     {
         $param = $this->getFormParam($field, null);
-        if ($param === null) {
+        if ($param === true) {
             return true;
         }
 
