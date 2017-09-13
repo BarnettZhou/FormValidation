@@ -230,10 +230,20 @@ abstract class CommonValidation
      * @param array $data
      * @return $this
      */
-    final protected function setOriginalData($data = [])
+    final public function setOriginalData($data = [])
     {
         $this->_original_data = $data;
         return $this;
+    }
+
+    /**
+     * 获取$this->_original_data
+     *
+     * @return array
+     */
+    final public function getOriginalData()
+    {
+        return $this->_original_data;
     }
 
     /**
