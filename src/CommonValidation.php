@@ -28,6 +28,11 @@ abstract class CommonValidation
      */
     protected $_parsed_form_params = [];
 
+    /**
+     * @var array 更新时使用的原数据
+     */
+    protected $_original_data = [];
+
     const MODE_ALL          = 0;    // 字段检查为ALL模式，检查Service定义的所有参数
     const MODE_ONLY         = 1;    // 字段检查为ONLY模式，检查传入$fields参数内所有字段
     const MODE_EXCEPT       = 2;    // 字段检查为EXCEPT模式，检查除了传入的$fields参数内的所有字段
@@ -216,6 +221,18 @@ abstract class CommonValidation
     final protected function setFormParam($key = 0, $value = '')
     {
         $this->_form_params[$key] = $value;
+        return $this;
+    }
+
+    /**
+     * 设置$this->_original_data
+     *
+     * @param array $data
+     * @return $this
+     */
+    final protected function setOriginalData($data = [])
+    {
+        $this->_original_data = $data;
         return $this;
     }
 
