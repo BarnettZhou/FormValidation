@@ -213,7 +213,7 @@ trait Rules
         if (!$param || !preg_match('/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/', $param)) {
             return false;
         } else {
-            return false;
+            return true;
         }
     }
 
