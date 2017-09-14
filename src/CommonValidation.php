@@ -143,7 +143,14 @@ abstract class CommonValidation
         }
 
         foreach ($fields as $_func_name) {
-            $ret = call_user_func($this->fieldsValidationRules()[$_func_name]);
+            if (is_callable($this->fieldsValidationRules()[$_func_name])) {
+                $ret = call_user_func($this->fieldsValidationRules()[$_func_name]);
+            } else if (is_array($this->fieldsValidationRules()[$_func_name])) {
+                $ret = $this->fieldsValidationRules()[$_func_name];
+            } else {
+                continue;
+            }
+
             // 若返回false则直接返回错误
             if ($ret === false) {
                 return false;
