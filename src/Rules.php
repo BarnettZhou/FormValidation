@@ -269,7 +269,7 @@ trait Rules
      * @param $end
      * @return bool
      */
-    protected function fieldNumberRange($field, $start, $end)
+    protected function fieldNumberRange($field, $start = '', $end = '')
     {
         $param = $this->getFormParam($field, null);
         if ($param === null) {
@@ -277,7 +277,7 @@ trait Rules
         }
 
         if ($start === '' && $end === '') {
-            $this->setErrorInfo(500, '请检查验证器的范围');
+            $this->setErrorInfo(500, '请检查验证器的取值范围');
             return false;
         }
 
@@ -289,6 +289,28 @@ trait Rules
             return false;
         }
         return true;
+    }
+
+    /**
+     * 检查数字是否小于最大值
+     * @param $field
+     * @param $end
+     * @return bool
+     */
+    protected function fieldMax($field, $end)
+    {
+        return $this->fieldNumberRange($field, '', $end);
+    }
+
+    /**
+     * 检查数字是否大于最小值
+     * @param $field
+     * @param $start
+     * @return bool
+     */
+    protected function fieldMin($field, $start)
+    {
+        return $this->fieldNumberRange($field, $start, '');
     }
 
     /**
