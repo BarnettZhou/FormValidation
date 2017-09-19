@@ -114,7 +114,7 @@ trait Rules
      * @param int $length 长度，默认为0不检查
      * @return bool
      */
-    protected function fieldMax($field, $length)
+    protected function fieldStrlenMax($field, $length)
     {
         $param = $this->getFormParam($field, null);
         if ($param === null) {
@@ -136,7 +136,7 @@ trait Rules
      * @param int $length 长度，默认为0不检查
      * @return bool
      */
-    protected function fieldMin($field, $length = 0)
+    protected function fieldStrlenMin($field, $length = 0)
     {
         if ($length == 0) return true;
         $param = $this->getFormParam($field, null);
@@ -159,7 +159,7 @@ trait Rules
      * @param int $length 长度，默认为0不检查
      * @return bool
      */
-    protected function fieldMaxzh($field, $length = 0)
+    protected function fieldStrlenMaxZh($field, $length = 0)
     {
         if ($length == 0) return true;
         $param = $this->getFormParam($field, null);
@@ -182,7 +182,7 @@ trait Rules
      * @param int $length 长度，默认为0不检查
      * @return bool
      */
-    protected function fieldMinzh($field, $length = 0)
+    protected function fieldStrlenMinZh($field, $length = 0)
     {
         if ($length == 0) return true;
         $param = $this->getFormParam($field, null);
