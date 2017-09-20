@@ -477,4 +477,30 @@ trait Rules
         }
         return true;
     }
+
+    /**
+     * 检查是否为IP地址
+     * @param $field
+     * @return bool
+     */
+    protected function fieldIpAddress($field)
+    {
+        $param = $this->getFormParam($field, null);
+        if (!$param) {
+            return true;
+        }
+
+        $address_array = explode('.', strval($param));
+        if (!count($address_array) != 4) {
+            return false;
+        }
+
+        foreach ($address_array as $value) {
+            if ($value < 0 || $value > 255) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
