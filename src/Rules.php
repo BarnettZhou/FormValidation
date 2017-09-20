@@ -281,13 +281,25 @@ trait Rules
             return false;
         }
 
+        // 检查最大值
         if ($start === '' && $param > $end) {
-            return false;
-        } else if ($end === '' && $param < $start) {
-            return false;
+            if ($param > $end) {
+                return false;
+            } else {
+                return true;
+            }
+        // 检查最小值
+        } else if ($end === '') {
+            if ($param < $start) {
+                return false;
+            } else {
+                return true;
+            }
+        // 检查范围
         } else if ($param < $start || $param > $end) {
             return false;
         }
+
         return true;
     }
 
