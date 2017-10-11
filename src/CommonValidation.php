@@ -173,6 +173,9 @@ abstract class CommonValidation
                     array_map(function($item) use (&$method_name) { $method_name .= ucfirst($item); }, $method_name_array);
                     $param_list = count($rule_array) > 1? explode(',', $rule_array[1]) : [];
 
+                    // 错误码
+                    $error_code = isset($rule_array[2])? intval($rule_array[2]) : 400;
+
                     // 验证方法是否存在
                     if (!method_exists($this, $method_name)) {
                         $this->_error_code = 500;   // I fucked up.
@@ -181,7 +184,7 @@ abstract class CommonValidation
                     }
                     // 验证字段
                     if ($this->$method_name($_func_name, ...$param_list) === false) {
-                        $this->_error_code = 400;   // You fucked up.
+                        $this->_error_code = $error_code;   // You fucked up.
                         if (!$this->_error_msg) {
                             $this->_error_msg = $rule_error_msg;
                         }
