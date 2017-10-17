@@ -76,11 +76,16 @@ abstract class CommonValidation
     }
 
     /**
+     * @param int $default
      * @return int 返回错误码
      */
-    final public function getErrorCode()
+    final public function getErrorCode($default = 400)
     {
-        return $this->_error_code;
+        if (!$this->_error_msg) {
+            return $default;
+        } else {
+            return $this->_error_code;
+        }
     }
 
     /**
