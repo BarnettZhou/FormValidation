@@ -81,7 +81,7 @@ abstract class CommonValidation
      */
     final public function getErrorCode($default = 400)
     {
-        if (!$this->_error_msg) {
+        if (!$this->_error_code) {
             return $default;
         } else {
             return $this->_error_code;
