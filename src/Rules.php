@@ -99,7 +99,7 @@ trait Rules
             return true;
         }
 
-        if (!$param || !preg_match('/^1[3|5|7|8]\d{9}$/', $param)) {
+        if (!$param || !preg_match('/^1\d{10}$/', $param)) {
             return false;
         } else {
             return true;
