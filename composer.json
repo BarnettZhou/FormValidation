@@ -2,7 +2,7 @@
     "name": "xuchen/form-validation",
     "description": "form validation",
     "type": "php",
-    "license": "Apache",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "zhouxuchen",
